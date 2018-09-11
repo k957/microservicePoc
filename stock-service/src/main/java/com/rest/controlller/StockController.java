@@ -38,7 +38,7 @@ public class StockController {
                 .stream()
                 .map(quote ->{
                 	Stock stock = getStockPrice(quote);
-                	return new Quote(quote,stock.getQuote().getPrice());
+                	return new Quote(quote,stock.getQuote().getPrice(),stock.getStockExchange(),stock.getCurrency());
                 })
                 .collect(Collectors.toList());
 		
@@ -55,10 +55,15 @@ public class StockController {
 	 private class Quote{
 		 private String quote;
 		 private BigDecimal price;
-		public Quote(String quote, BigDecimal price) {
+		 private String stockExchange;
+		 private String currency;
+		
+		 public Quote(String quote, BigDecimal price, String stockExchange, String currency) {
 			super();
 			this.quote = quote;
 			this.price = price;
+			this.stockExchange = stockExchange;
+			this.currency = currency;
 		}
 		public String getQuote() {
 			return quote;
@@ -72,8 +77,18 @@ public class StockController {
 		public void setPrice(BigDecimal price) {
 			this.price = price;
 		}
-		 
-		 
+		public String getStockExchange() {
+			return stockExchange;
+		}
+		public void setStockExchange(String stockExchange) {
+			this.stockExchange = stockExchange;
+		}
+		public String getCurrency() {
+			return currency;
+		}
+		public void setCurrency(String currency) {
+			this.currency = currency;
+		} 
 	 }
 
 }
